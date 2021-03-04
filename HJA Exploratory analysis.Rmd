@@ -1,0 +1,77 @@
+---
+title: "HJAndrews Exploratory Analysis"
+author: "A. Cozza"
+date: "3/3/2021"
+output: word_document
+---
+
+```{r setup, include=TRUE}
+
+HJA=read.csv("AS01101.csv",header=TRUE)
+names(HJA)
+boxplot(HJA$TOTAL_LENGTH)
+boxplot(TOTAL_LENGTH~STREAM, data=HJA)
+boxplot(TOTAL_LENGTH~SITE, data=HJA)
+HJA$TOTAL_LENGTHSQ=sqrt(HJA$TOTAL_LENGTH)
+boxplot(TOTAL_LENGTHSQ~STREAM, data=HJA)
+boxplot(TOTAL_LENGTHSQ~SITE, data=HJA)
+
+#Does transforming the data to square root help reduce outliers? 
+#Yes, there were quite a few high length values particularly in McRae stream. By using the sqrt transformation, this lessened the outliers a lot. However, there are still quite a few left in McRae stream. 
+
+boxplot(TOTAL_LENGTH~STREAM+SPECIES, data=HJA)
+HJA$fSTREAM= factor(HJA$STREAM)
+HJA$fSITE=factor(HJA$SITE)
+HJA$fYEAR = factor(HJA$YEAR)
+HJA$fSPECIES=factor(HJA$SPECIES)
+
+boxplot(HJA$TOTAL_LENGTH~fSTREAM+fSPECIES, data=HJA)
+boxplot(HJA$TOTAL_LENGTH~fSPECIES, data=HJA)
+boxplot(HJA$TOTAL_LENGTH~fSPECIES+fYEAR, data=HJA)
+boxplot(HJA$TOTAL_LENGTH~fYEAR, data=HJA)
+
+boxplot(TOTAL_LENGTHSQ~STREAM+SPECIES, data=HJA)
+boxplot(HJA$TOTAL_LENGTHSQ~fSTREAM+fSPECIES, data=HJA)
+boxplot(HJA$TOTAL_LENGTHSQ~fSPECIES, data=HJA)
+boxplot(HJA$TOTAL_LENGTHSQ~fSPECIES+fYEAR, data=HJA)
+boxplot(HJA$TOTAL_LENGTHSQ~fYEAR, data=HJA)
+#Looking into variables that may influence the outliers.
+
+library(tidyverse)
+library(ggplot2)
+ggplot(HJA, aes(y=TOTAL_LENGTH,x=fSTREAM))+geom_boxplot()+facet_grid(~fYEAR)+theme_classic()
+ggplot(HJA, aes(y=TOTAL_LENGTHSQ,x=fSTREAM))+geom_boxplot()+facet_grid(~fYEAR)+theme_classic()
+
+
+boxplot(TOTAL_LENGTH~SAMPLING_METHOD, data=HJA)
+
+hist(HJA$TOTAL_LENGTH)
+hist(HJA$TOTAL_LENGTH[HJA$SPECIES=="CT"],main="CT", xlab="")
+hist(HJA$TOTAL_LENGTH[HJA$SPECIES=="GS"],main="GS", xlab="") 
+hist(HJA$TOTAL_LENGTH[HJA$SPECIES=="TR"],main="TR", xlab="") 
+hist(HJA$TOTAL_LENGTH[HJA$SPECIES=="CT"],main="CT", xlab="") 
+hist(HJA$TOTAL_LENGTH[HJA$SPECIES=="SC"],main="SC", xlab="") 
+hist(HJA$TOTAL_LENGTH[HJA$SPECIES=="TF"],main="TF", xlab="") 
+HJA$SPECIES
+
+hist(HJA$TOTAL_LENGTH[HJA$STREAM=="McRae"],main="McRae", xlab="") 
+hist(HJA$TOTAL_LENGTH[HJA$STREAM=="Lookout"],main="Lookout", xlab="") 
+
+qqnorm(HJA$TOTAL_LENGTH)
+qqline(HJA$TOTAL_LENGTH)
+#The lengths do not look normally distributed. I did notice that while generating the histograms, the lengths by species looked a bit better and some were a lot more normally distributed. 
+
+qqnorm(HJA$TOTAL_LENGTHSQ)
+qqline(HJA$TOTAL_LENGTHSQ)
+#The data is still not normally distributed. It actually may look worse here.The problem could be that there may be more/less values of smaller/larger fish depending on species. 
+
+
+plot(HJA$WEIGHT, HJA$TOTAL_LENGTH, xlab="Weight", ylab ="TL")
+model1=lm(TOTAL_LENGTH~WEIGHT,data=HJA)
+abline(model1)
+#The line does not fit it well. Looks to be more curved which would mean using something other than a lm. 
+
+
+
+
+
