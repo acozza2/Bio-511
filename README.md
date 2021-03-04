@@ -16,12 +16,12 @@ Both biological measurements (densities and vertebrate sizes of cutthroat trout)
 
 My questions that I would like to answer are:
 •	Do the measurements of cutthroat vary synchronously in all creeks within the watershed? Predictor variables: creek site. response variable: size of cutthroat 
-o	Hypothesis: densities and measurements correlate more to the abiotic factors than the fact that they are part of the same watershed. 
+o	Hypothesis: dmeasurements correlate more to the abiotic factors than the fact that they are part of the same watershed. 
 o	Statistical analyses: linear regression 
 	Assumptions: linear relationship*(issue opening data in R to check), normality, little/no collinearity, homogeneity of residuals.
 
 
-•	Do densities and/or measurements of cutthroat correlate to abiotic factors of the steams? Predictor variable: wetted width, water depth and stream gradient. Response variable: density and cutthroat measurements.
-o	Hypothesis: densities and measurements increase with channel width and depth. 
+•	Do measurements of fish correlate to abiotic factors of the steams? Do separate species? Predictor variable: wetted width, water depth and stream gradient. Response variable: species and measurements.
+o	Hypothesis: species richness and measurements increase with channel width and depth. 
 o	Statistical analyses: multiple linear regression 
 	Assumptions: linear relationship*(issue opening data in R to check), normality, no collinearity, homogeneity of residuals
