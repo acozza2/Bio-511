@@ -12,7 +12,7 @@ Johnson, Sherri L. and Penaluna, Brooke E. (2020). Aquatic vertebrate population
 
 Plan for data:
 
-Both biological measurements (densities and vertebrate sizes of cutthroat trout) and abiotic variables (wetted widths, water depths, stream gradient) were collected from 3 streams (Mack, McCrae, Upper Lookout) in the Lookout Creek watershed in HJ Andrews Forest. 
+Both biological measurements ( vertebrate sizes of cutthroat trout) and abiotic variables (wetted widths, water depths) were collected from 3 streams (Mack, McCrae, Upper Lookout) in the Lookout Creek watershed in HJ Andrews Forest. 
 
 My questions that I would like to answer are:
 •	Do the measurements of cutthroat vary synchronously in all creeks within the watershed? Predictor variables: creek site. response variable: size of cutthroat 
